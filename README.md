@@ -1,5 +1,6 @@
 # Table of Contents
 
+0. [Solution Details] (README.md#solution-details)
 1. [Challenge Summary] (README.md#challenge-summary)
 2. [Details of Implementation] (README.md#details-of-implementation)
 3. [Description of Data] (README.md#description-of-data)
@@ -7,6 +8,31 @@
 5. [Repo directory structure] (README.md#repo-directory-structure)
 6. [Testing your directory structure and output format] (README.md#testing-your-directory-structure-and-output-format)
 7. [FAQ] (README.md#faq)
+
+##Solution Details
+
+### Implementation
+The implementation is done in java. I have created a Graph data structure to create the social network. This allows for quick search using BFS (Bread-First Search) and also minimizes the space usage since there is no duplication.
+### Running
+* Created junits on base classes
+** These exercise the base Graph functionality
+** These are not executed during run.sh but were run using eclipse itself
+* Created additional test suites for validate the output files
+** These were run from the command line itself
+** test-1-paymo_trans : original test
+** test-2-paymo_trans : validation using 10 lines
+** test-3_paymo_trans : scaling to 10k lines on original dataset
+** test-4_paymo_trans : scaling to 100k lines on original dataset (Approx 60s)
+* Scalability
+** Ran test on original 4 million lines of batch and 3 million lines of stream data
+** Ran it for 90 minutes, processed 280k lines of stream dataset - approx 20 ms per transaction line
+* Code structure
+** Graph: UserGraph, UserNodeImpl, UserNode
+** Payment Analysis: PaymentAnalyzer, UserPayment
+*** Note: Payment files are being read using readLine which uses /r OR /n as terminating chars
+*** This can be changed to only use /n as terminating char
+*** Currently, no valid data is skipped but if the same format is embedded in message string using /r, it will be assumed to be valid transaction line
+** Input / Output handling: PaymentInput, PaymentProcessor
 
 ##Challenge Summary
 
